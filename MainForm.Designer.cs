@@ -43,8 +43,8 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.m_lampInfo = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.m_quitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.m_quitMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.m_trayMenu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -52,7 +52,7 @@
             // 
             this.m_trayIcon.ContextMenuStrip = this.m_trayMenu;
             this.m_trayIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("m_trayIcon.Icon")));
-            this.m_trayIcon.Text = "m_trayIcon";
+            this.m_trayIcon.Text = "Projector Control";
             this.m_trayIcon.Visible = true;
             // 
             // m_trayMenu
@@ -66,7 +66,7 @@
             this.aboutToolStripMenuItem,
             this.m_quitMenuItem});
             this.m_trayMenu.Name = "m_trayMenu";
-            this.m_trayMenu.Size = new System.Drawing.Size(153, 148);
+            this.m_trayMenu.Size = new System.Drawing.Size(129, 126);
             // 
             // m_inputMenuItem
             // 
@@ -77,7 +77,7 @@
             this.m_inputVga1,
             this.m_inputVga2});
             this.m_inputMenuItem.Name = "m_inputMenuItem";
-            this.m_inputMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.m_inputMenuItem.Size = new System.Drawing.Size(128, 22);
             this.m_inputMenuItem.Text = "&Input";
             // 
             // m_inputComposite
@@ -121,7 +121,7 @@
             this.m_powerOn,
             this.m_powerOff});
             this.m_powerMenuItem.Name = "m_powerMenuItem";
-            this.m_powerMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.m_powerMenuItem.Size = new System.Drawing.Size(128, 22);
             this.m_powerMenuItem.Text = "&Power";
             // 
             // m_powerOn
@@ -141,33 +141,33 @@
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(125, 6);
             // 
             // m_lampInfo
             // 
             this.m_lampInfo.Name = "m_lampInfo";
-            this.m_lampInfo.Size = new System.Drawing.Size(152, 22);
+            this.m_lampInfo.Size = new System.Drawing.Size(128, 22);
             this.m_lampInfo.Text = "Lamp Info";
             this.m_lampInfo.Click += new System.EventHandler(this.IShowLampInfo);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
-            // 
-            // m_quitMenuItem
-            // 
-            this.m_quitMenuItem.Name = "m_quitMenuItem";
-            this.m_quitMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.m_quitMenuItem.Text = "&Quit";
-            this.m_quitMenuItem.Click += new System.EventHandler(this.IQuit);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(125, 6);
             // 
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
             this.aboutToolStripMenuItem.Text = "&About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.IShowAboutBox);
+            // 
+            // m_quitMenuItem
+            // 
+            this.m_quitMenuItem.Name = "m_quitMenuItem";
+            this.m_quitMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.m_quitMenuItem.Text = "&Quit";
+            this.m_quitMenuItem.Click += new System.EventHandler(this.IQuit);
             // 
             // MainForm
             // 
