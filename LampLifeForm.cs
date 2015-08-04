@@ -19,7 +19,14 @@ namespace InFocusCtrl
 
         async void IInitLampLife(InFocusIN146 projector)
         {
-            uint life = await projector.QueryLampLife();
+            uint life = 0;
+            try {
+                life = await projector.QueryLampLife();
+            } catch (InvalidCommandException){
+                Close();
+                MessageBox.Show("The projector must be turned on first!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             m_progress.Value = (int)life;
             m_lifeHint.Text = String.Format("Approximately {0} Hours", life);
         }

@@ -19,7 +19,7 @@ namespace InFocusCtrl
         protected SerialCommands()
         {
             // maybe we shouldn't hardcode?
-            m_serialPort = new SerialPort("COM1", 115200, Parity.None, 8, StopBits.One);
+            m_serialPort = new SerialPort("COM3", 115200, Parity.None, 8, StopBits.One);
             m_serialPort.Handshake = Handshake.None;
             m_serialPort.Open();
         }
@@ -57,34 +57,25 @@ namespace InFocusCtrl
             result = result.Substring(1, result.Length - 2);
             string[] values = result.Split(new string[] { "," }, StringSplitOptions.RemoveEmptyEntries);
             // values[0] = "0-32766", values[1] = 42
-            return Convert.ToUInt32(values[1]);
+            // But sometimes the projector only returns the value...
+            if (values.Length > 1)
+                return Convert.ToUInt32(values[1]);
+            else
+                return Convert.ToUInt32(values[0]);
         }
     }
 
     public class InFocusIN146 : SerialCommands
     {
-        public enum Power { On, Off }
+        public enum Power { Off, On }
         public enum VideoSources { VGA1, VGA2, HDMI, SVideo, Composite }
 
         #region Read Commands
-        public async Task<Power> IsPoweredOn()
-        {
-            SendString("(PWR?)");
-            uint state = await IReadCommandResult();
-            return (Power)state;
-        }
 
         public async Task<uint> QueryLampLife()
         {
             SendString("(LMP?)");
             return await IReadCommandResult();
-        }
-
-        public async Task<VideoSources> QueryVideoSource()
-        {
-            SendString("(SRC?)");
-            uint source = await IReadCommandResult();
-            return (VideoSources)source;
         }
         #endregion
 

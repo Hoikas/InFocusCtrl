@@ -16,9 +16,6 @@ namespace InFocusCtrl
         InFocusIN146 m_projector;
         Dictionary<Keys, EventHandler> m_hotkeys;
 
-        // Hacks...
-        ManualResetEvent m_initialStuffDoneEvent = new ManualResetEvent(false);
-
         public MainForm()
         {
             // Setup the projector notifiers
@@ -34,7 +31,6 @@ namespace InFocusCtrl
 
             // Setup things
             InitializeComponent();
-            IAsyncInit();
         }
 
         private void MainForm_Shown(object sender, EventArgs e)
@@ -54,31 +50,11 @@ namespace InFocusCtrl
                 UnregisterHotKey(Handle, i);
         }
 
-        private async void IAsyncInit()
-        {
-            // We do this so we can chain the read commands
-            await IUpdatePowerState();
-            await IUpdateVideoSource();
-            m_initialStuffDoneEvent.Set();
-        }
-
-        private async Task IUpdatePowerState()
-        {
-            InFocusIN146.Power state = await m_projector.IsPoweredOn();
-            ITogglePowerState(state);
-        }
-
         private void ITogglePowerState(InFocusIN146.Power state)
         {
             bool on = (state == InFocusIN146.Power.On);
             m_powerOff.Checked = !on;
             m_powerOn.Checked = on;
-        }
-
-        private async Task IUpdateVideoSource()
-        {
-            InFocusIN146.VideoSources source = await m_projector.QueryVideoSource();
-            IToggleSource(source);
         }
 
         private void IToggleSource(InFocusIN146.VideoSources source)
@@ -177,9 +153,6 @@ namespace InFocusCtrl
 
         private void IShowLampInfo(object sender, EventArgs e)
         {
-            // Don't send any more read commands to the projector until we know the initial ones
-            // are done... Otherwise... well, I don't want to talk about it.
-            m_initialStuffDoneEvent.WaitOne();
             LampLifeForm llf = new LampLifeForm(m_projector);
             llf.Show(this);
         }
