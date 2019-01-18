@@ -98,4 +98,34 @@ namespace InFocusCtrl
         }
         #endregion
     }
+
+    public class NEC_NPWM351W : Projector
+    {
+        protected override int BaudRate { get => 38400; }
+
+        public override void SetPowerState(Power state)
+        {
+            byte[] msg = null;
+            if (state == Power.Off)
+                msg = new byte[] { 0x02, 0x01, 0x00, 0x00, 0x00, 0x03 };
+            else if (state == Power.On)
+                msg = new byte[] { 0x02, 0x00, 0x00, 0x00, 0x00, 0x02 };
+            PortStream.Write(msg, 0, msg.Length);
+        }
+
+        public override void SetVideoSource(VideoSources source) {
+            byte[] msg = null;
+            switch (source) {
+                case VideoSources.HDMI:
+                    msg = new byte[] { 0x02, 0x03, 0x00, 0x00, 0x02, 0x01, 0x1A, 0x22 };
+                    break;
+                case VideoSources.VGA1:
+                    msg = new byte[] { 0x02, 0x03, 0x00, 0x00, 0x02, 0x01, 0x01, 0x09 };
+                    break;
+                default:
+                    throw new NotSupportedException();
+            }
+            PortStream.Write(msg, 0, msg.Length);
+        }
+    }
 }

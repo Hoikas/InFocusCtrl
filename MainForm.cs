@@ -116,27 +116,52 @@ namespace InFocusCtrl
 
         private void ISetSourceHdmi(object sender, EventArgs e)
         {
-            m_projector.SetVideoSource(Projector.VideoSources.HDMI);
+            try {
+                m_projector.SetVideoSource(Projector.VideoSources.HDMI);
+            } catch (NotSupportedException) {
+                MessageBox.Show("The projector does not support that input.", "Information",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private void ISetSourceVga1(object sender, EventArgs e)
         {
-            m_projector.SetVideoSource(Projector.VideoSources.VGA1);
+            try {
+                m_projector.SetVideoSource(Projector.VideoSources.VGA1);
+            } catch (NotSupportedException) {
+                MessageBox.Show("The projector does not support that input.", "Information",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private void ISetSourceVga2(object sender, EventArgs e)
         {
-            m_projector.SetVideoSource(Projector.VideoSources.VGA2);
+            try {
+                m_projector.SetVideoSource(Projector.VideoSources.VGA2);
+            } catch (NotSupportedException) {
+                MessageBox.Show("The projector does not support that input.", "Information",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private void ISetSourceComposite(object sender, EventArgs e)
         {
-            m_projector.SetVideoSource(Projector.VideoSources.Composite);
+            try {
+                m_projector.SetVideoSource(Projector.VideoSources.Composite);
+            } catch (NotSupportedException) {
+                MessageBox.Show("The projector does not support that input.", "Information",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private void ISetSourceSVideo(object sender, EventArgs e)
         {
-            m_projector.SetVideoSource(Projector.VideoSources.SVideo);
+            try {
+                m_projector.SetVideoSource(Projector.VideoSources.SVideo);
+            } catch (NotSupportedException) {
+                MessageBox.Show("The projector does not support that input.", "Information",
+                                MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
         }
 
         private void IQuit(object sender, EventArgs e)
