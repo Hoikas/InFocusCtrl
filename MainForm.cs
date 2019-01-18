@@ -107,54 +107,41 @@ namespace InFocusCtrl
         private void IPowerOn(object sender, EventArgs e)
         {
             m_projector.SetPowerState(InFocusIN146.Power.On);
-            ITogglePowerState(InFocusIN146.Power.On);
         }
 
         private void IPowerOff(object sender, EventArgs e)
         {
             m_projector.SetPowerState(InFocusIN146.Power.Off);
-            ITogglePowerState(InFocusIN146.Power.Off);
         }
 
         private void ISetSourceHdmi(object sender, EventArgs e)
         {
             m_projector.SetVideoSource(InFocusIN146.VideoSources.HDMI);
-            IToggleSource(InFocusIN146.VideoSources.HDMI);
         }
 
         private void ISetSourceVga1(object sender, EventArgs e)
         {
             m_projector.SetVideoSource(InFocusIN146.VideoSources.VGA1);
-            IToggleSource(InFocusIN146.VideoSources.VGA1);
         }
 
         private void ISetSourceVga2(object sender, EventArgs e)
         {
             m_projector.SetVideoSource(InFocusIN146.VideoSources.VGA2);
-            IToggleSource(InFocusIN146.VideoSources.VGA2);
         }
 
         private void ISetSourceComposite(object sender, EventArgs e)
         {
             m_projector.SetVideoSource(InFocusIN146.VideoSources.Composite);
-            IToggleSource(InFocusIN146.VideoSources.Composite);
         }
 
         private void ISetSourceSVideo(object sender, EventArgs e)
         {
             m_projector.SetVideoSource(InFocusIN146.VideoSources.SVideo);
-            IToggleSource(InFocusIN146.VideoSources.SVideo);
         }
 
         private void IQuit(object sender, EventArgs e)
         {
             Application.Exit();
-        }
-
-        private void IShowLampInfo(object sender, EventArgs e)
-        {
-            LampLifeForm llf = new LampLifeForm(m_projector);
-            llf.Show(this);
         }
 
         private void IShowAboutBox(object sender, EventArgs e)
