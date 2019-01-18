@@ -8,18 +8,23 @@ namespace InFocusCtrl
 {
     class InvalidCommandException : Exception { }
 
-    public abstract class SerialCommands
+    public abstract class Projector
     {
+        public enum Power { Off, On }
+        public enum VideoSources { VGA1, VGA2, HDMI, SVideo, Composite }
+
         SerialPort m_serialPort;
         protected Stream PortStream
         {
             get { return m_serialPort.BaseStream; }
         }
 
-        protected SerialCommands()
+        protected abstract int BaudRate { get; }
+
+        protected Projector()
         {
             // maybe we shouldn't hardcode?
-            m_serialPort = new SerialPort("COM3", 115200, Parity.None, 8, StopBits.One);
+            m_serialPort = new SerialPort("COM3", BaudRate, Parity.None, 8, StopBits.One);
             m_serialPort.Handshake = Handshake.None;
             m_serialPort.Open();
         }
@@ -63,12 +68,14 @@ namespace InFocusCtrl
             else
                 return Convert.ToUInt32(values[0]);
         }
+
+        public abstract void SetPowerState(Power state);
+        public abstract void SetVideoSource(VideoSources source);
     }
 
-    public class InFocusIN146 : SerialCommands
+    public class InFocusIN146 : Projector
     {
-        public enum Power { Off, On }
-        public enum VideoSources { VGA1, VGA2, HDMI, SVideo, Composite }
+        protected override int BaudRate { get => 115200; }
 
         #region Read Commands
 
@@ -80,12 +87,12 @@ namespace InFocusCtrl
         #endregion
 
         #region Write Commands
-        public void SetPowerState(Power state)
+        public override void SetPowerState(Power state)
         {
             SendString(String.Format("(PWR{0})", (int)state));
         }
 
-        public void SetVideoSource(VideoSources source)
+        public override void SetVideoSource(VideoSources source)
         {
             SendString(String.Format("(SRC{0})", (int)source));
         }

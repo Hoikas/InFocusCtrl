@@ -13,7 +13,7 @@ namespace InFocusCtrl
 {
     public partial class MainForm : Form
     {
-        InFocusIN146 m_projector;
+        Projector m_projector;
         Dictionary<Keys, EventHandler> m_hotkeys;
 
         public MainForm()
@@ -106,37 +106,37 @@ namespace InFocusCtrl
         #region Event Handlers
         private void IPowerOn(object sender, EventArgs e)
         {
-            m_projector.SetPowerState(InFocusIN146.Power.On);
+            m_projector.SetPowerState(Projector.Power.On);
         }
 
         private void IPowerOff(object sender, EventArgs e)
         {
-            m_projector.SetPowerState(InFocusIN146.Power.Off);
+            m_projector.SetPowerState(Projector.Power.Off);
         }
 
         private void ISetSourceHdmi(object sender, EventArgs e)
         {
-            m_projector.SetVideoSource(InFocusIN146.VideoSources.HDMI);
+            m_projector.SetVideoSource(Projector.VideoSources.HDMI);
         }
 
         private void ISetSourceVga1(object sender, EventArgs e)
         {
-            m_projector.SetVideoSource(InFocusIN146.VideoSources.VGA1);
+            m_projector.SetVideoSource(Projector.VideoSources.VGA1);
         }
 
         private void ISetSourceVga2(object sender, EventArgs e)
         {
-            m_projector.SetVideoSource(InFocusIN146.VideoSources.VGA2);
+            m_projector.SetVideoSource(Projector.VideoSources.VGA2);
         }
 
         private void ISetSourceComposite(object sender, EventArgs e)
         {
-            m_projector.SetVideoSource(InFocusIN146.VideoSources.Composite);
+            m_projector.SetVideoSource(Projector.VideoSources.Composite);
         }
 
         private void ISetSourceSVideo(object sender, EventArgs e)
         {
-            m_projector.SetVideoSource(InFocusIN146.VideoSources.SVideo);
+            m_projector.SetVideoSource(Projector.VideoSources.SVideo);
         }
 
         private void IQuit(object sender, EventArgs e)
